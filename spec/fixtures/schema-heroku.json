@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-04/hyper-schema",
+  "definitions": {
+    "account-feature": {
+      "description": "An account feature represents a Heroku labs capability that can be enabled or disabled for an account on Heroku.",
+      "$schema": "http://json-schema.org/draft-04/hyper-schema",
+      "stability": "production",
+      "strictProperties": true,
+      "title": "Heroku Platform API - Account Feature",
+      "type": [
+        "object"
+      ],
+      "definitions": {
+        "created_at": {
+          "description": "when account feature was created",
+          "example": "2012-01-01T12:00:00Z",
+          "format": "date-time",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "description": {
+          "description": "description of account feature",
+          "example": "Causes account to example.",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "doc_url": {
+          "description": "documentation URL of account feature",
+          "example": "http://devcenter.heroku.com/articles/example",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "enabled": {
+          "description": "whether or not account feature has been enabled",
+          "example": true,
+          "readOnly": false,
+          "type": [
+            "boolean"
+          ]
+        },
+        "id": {
+          "description": "unique identifier of account feature",
+          "example": "01234567-89ab-cdef-0123-456789abcdef",
+          "format": "uuid",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "identity": {
+          "example": "01234567-89ab-cdef-0123-456789abcdef",
+          "anyOf": [
+            {
+              "$ref": "#/definitions/account-feature/definitions/id"
+            },
+            {
+              "$ref": "#/definitions/account-feature/definitions/name"
+            }
+          ]
+        },
+        "name": {
+          "description": "unique name of account feature",
+          "example": "name",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "state": {
+          "description": "state of account feature",
+          "example": "public",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        },
+        "updated_at": {
+          "description": "when account feature was updated",
+          "example": "2012-01-01T12:00:00Z",
+          "format": "date-time",
+          "readOnly": true,
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "links": [
+        {
+          "description": "Info for an existing account feature.",
+          "href": "/account/features/{(%23%2Fdefinitions%2Faccount-feature%2Fdefinitions%2Fidentity)}",
+          "method": "GET",
+          "rel": "self",
+          "targetSchema": {
+            "$ref": "#/definitions/account-feature"
+          },
+          "title": "Info"
+        },
+        {
+          "description": "List existing account features.",
+          "href": "/account/features",
+          "method": "GET",
+          "rel": "instances",
+          "title": "List"
+        },
+        {
+          "description": "Update an existing account feature.",
+          "href": "/account/features/{(%23%2Fdefinitions%2Faccount-feature%2Fdefinitions%2Fidentity)}",
+          "method": "PATCH",
+          "rel": "update",
+          "schema": {
+            "properties": {
+              "enabled": {
+                "$ref": "#/definitions/account-feature/definitions/enabled"
+              },
+              "name": {
+                "$ref": "#/definitions/account-feature/definitions/name"
+              },
+              "app": {
+                "description": "optional param for test app",
+                "properties": {
+                  "name": {
+                    "$ref": "#/definitions/account-feature/definitions/name"
+                  },
+                  "created_at": {
+                    "$ref": "#/definitions/account-feature/definitions/created_at"
+                  }
+                },
+                "type": [
+                  "object"
+                ]
+              }
+            },
+            "required": [
+              "enabled"
+            ],
+            "type": [
+              "object"
+            ]
+          },
+          "targetSchema": {
+            "$ref": "#/definitions/account-feature"
+          },
+          "title": "Update"
+        }
+      ],
+      "properties": {
+        "created_at": {
+          "$ref": "#/definitions/account-feature/definitions/created_at"
+        },
+        "description": {
+          "$ref": "#/definitions/account-feature/definitions/description"
+        },
+        "doc_url": {
+          "$ref": "#/definitions/account-feature/definitions/doc_url"
+        },
+        "enabled": {
+          "$ref": "#/definitions/account-feature/definitions/enabled"
+        },
+        "id": {
+          "$ref": "#/definitions/account-feature/definitions/id"
+        },
+        "name": {
+          "$ref": "#/definitions/account-feature/definitions/name"
+        },
+        "state": {
+          "$ref": "#/definitions/account-feature/definitions/state"
+        },
+        "updated_at": {
+          "$ref": "#/definitions/account-feature/definitions/updated_at"
+        }
+      }
+    }
+  },
+  "properties": {
+    "account-feature": {
+      "$ref": "#/definitions/account-feature"
+    }
+  },
+  "type": [
+    "object"
+  ],
+  "description": "The platform API empowers developers to automate, extend and combine Heroku with other services.",
+  "id": "http://api.heroku.com/schema#",
+  "links": [
+    {
+      "href": "https://api.heroku.com",
+      "rel": "self"
+    },
+    {
+      "href": "/schema",
+      "method": "GET",
+      "rel": "self",
+      "targetSchema": {
+        "additionalProperties": true
+      }
+    }
+  ],
+  "title": "Heroku Platform API"
+}
