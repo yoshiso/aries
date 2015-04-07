@@ -1,8 +1,6 @@
 # Aries
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/aries`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Aries is a iOS(Swift), Andorid(not yet, but future) HTTP client generator for APIs represented with JSON Schema
 
 ## Installation
 
@@ -22,7 +20,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Generate a client
+
+Aries generates an HTTP client from a JSON schema that describes your API. Look at prmd for tooling to help write a JSON schema. When you have a JSON schema prepared you can generate a client for your API
+
+    $ bin/aries generate json-schema.json
+
+### Custom Configuration
+
+Aries can setup costom config for api client class name, base url, output path.
+
+    $ bin/aries generate json-schema.json --name MyApi \
+                                          --url http://api.myapp.com \
+                                          --output /path/to/dir
+
+## Swift(ios)
+
+Dependent on [SwiftTask](https://github.com/ReactKit/SwiftTask), [Alamofire](https://github.com/Alamofire/Alamofire), [URITemplate](https://github.com/kylef/URITemplate.swift).
+Aries api client should be used with these libraries.
 
 ## Development
 
