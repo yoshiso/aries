@@ -34,10 +34,58 @@ Aries can setup costom config for api client class name, base url, output path.
                                           --url http://api.myapp.com \
                                           --output /path/to/dir
 
-## Swift(ios)
+### Swift(ios)
 
 Dependent on [SwiftTask](https://github.com/ReactKit/SwiftTask), [Alamofire](https://github.com/Alamofire/Alamofire), [URITemplate](https://github.com/kylef/URITemplate.swift).
-Aries api client should be used with these libraries.
+Aries api client should be used with these libraries, and works like promise style.
+
+Aries api client behaves use the following.
+
+```
+
+Api.TodoItem.Read().success { (value: AnyObject) -> Void in
+    let items = value as [[String:AnyObject]]
+    println(items)
+}.failure { (error, isCancelled) -> Void in
+    return
+}
+
+```
+
+Aries has Custom Delegation for request, response for authenticatin, custom header, etc.
+
+```
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate, AriesApiDelegate {
+
+    self.token: String? = nil
+
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        AriesApi.delegate = self
+        return true
+    }
+
+    func onFailure(err: NSError) -> NSError {
+        debugPrintln(err)
+        return err
+    }
+
+    func onSuccess(response: AnyObject) -> AnyObject {
+        debugPrintln(response)
+        return response
+    }
+
+    func beforeRequest(request: NSMutableURLRequest) -> NSMutableURLRequest {
+        debugPrintln(request)
+        request.setValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")
+        return request
+    }
+
+}
+
+```
+
 
 ## Development
 
