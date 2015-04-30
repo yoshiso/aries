@@ -73,7 +73,7 @@
           "href": "/apps/{(%23%2Fdefinitions%2Fapp%2Fdefinitions%2Fid)}/text",
           "method": "GET",
           "rel": "self",
-          "title": "Info",
+          "title": "InfoText",
           "mediaType": "text/plain"
         },
         {
@@ -116,7 +116,7 @@
               "object"
             ]
           },
-          "title": "Create"
+          "title": "CreateFile"
         }
       ],
       "properties": {

@@ -7,7 +7,6 @@
 
 import Alamofire
 import SwiftTask
-import URITemplate
 
 typealias <%= class_name %>Response = Task<Int,AnyObject,NSError>
 
@@ -41,7 +40,7 @@ class <%= class_name %> {
         mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Accept")
 
-        if let delegate = self.delegate?{
+        if let delegate = self.delegate{
             return delegate.customReqeust(mutableURLRequest)
         }
 
@@ -49,10 +48,15 @@ class <%= class_name %> {
     }
 
     private class func generateURI(template: String, params: [String: AnyObject]?) -> String {
+        var uri = template
         if let params = params {
-            return URITemplate(template: template).expand(params)
+          for (key, value) in params {
+              if let value = value as? String {
+                  uri = uri.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
+              }
+          }
         }
-        return template
+        return uri
     }
 
     class Base {
@@ -61,14 +65,14 @@ class <%= class_name %> {
             return <%= class_name %>Response {(progress, fulfill, reject, configure) in
                 let alam = Alamofire.request(URLRequest)
                                     .validate()
-                                    .responseJSON({ (req, res, data, err) -> Void in
+                                    .responseJSON { (req, res, data, err) -> Void in
 
                     if let err = err {
                         reject(self.buildErr(res, data: data, err: err))
                         return
                     }
                     fulfill(data!)
-                })
+                }
                 debugPrintln(alam)
                 configure.pause  = { [weak alam] in if let alam = alam { alam.suspend() } }
                 configure.resume = { [weak alam] in if let alam = alam { alam.resume() }  }
