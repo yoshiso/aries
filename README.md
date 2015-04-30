@@ -34,9 +34,9 @@ Aries can setup costom config for api client class name, base url, output path.
                                           --url http://api.myapp.com \
                                           --output /path/to/dir
 
-### Swift(v1,1)
+### Swift(v1.2)
 
-Dependent on [SwiftTask](https://github.com/ReactKit/SwiftTask), [Alamofire](https://github.com/Alamofire/Alamofire), [URITemplate](https://github.com/kylef/URITemplate.swift).
+Dependent on [SwiftTask](https://github.com/ReactKit/SwiftTask), [Alamofire](https://github.com/Alamofire/Alamofire),
 Aries api client should be used with these libraries, and works like promise style.
 
 Aries api client behaves use the following.
