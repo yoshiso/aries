@@ -11,9 +11,9 @@ import SwiftTask
 typealias RackJSONSchemaApiResponse = Task<Int,AnyObject,NSError>
 
 protocol RackJSONSchemaApiDelegate {
-    func customReqeust(request: NSMutableURLRequest) -> NSMutableURLRequest
-    func onDefaultSuccess(response: AnyObject) -> AnyObject
-    func onDefaultFailure(err: NSError) -> NSError
+    func interceptReqeust(request: NSMutableURLRequest) -> NSMutableURLRequest
+    func interceptSuccess(response: AnyObject) -> AnyObject
+    func interceptFailure(err: NSError) -> NSError
 }
 
 class RackJSONSchemaApi {
