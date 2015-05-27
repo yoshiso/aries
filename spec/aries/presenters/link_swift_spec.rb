@@ -25,7 +25,7 @@ describe Aries::Presenters::LinkSwift do
   end
 
   describe ".params_for_method" do
-    it{ expect(instance.params_for_method).to eq "accountFeatureIdentity: Any" }
+    it{ expect(instance.params_for_method).to eq "accountFeatureIdentity: AnyObject" }
   end
 
   describe ".params_keys" do
